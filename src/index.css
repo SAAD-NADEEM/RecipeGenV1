@@ -1,0 +1,348 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  /* Color Palettes */
+  --clr-100: #fff;
+  --clr-200: #b2b2b2;
+  --clr-300: #212121;
+  --clr-400: #0c0c0c;
+  --clr-500: #de0000;
+}
+body {
+  height: 100svh;
+  width: 100svw;
+  background: var(--clr-400);
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  padding: 20px 15px;
+  background: #0c0c0c;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row
+}
+.flex-column {
+  display: flex;
+  flex-direction: column
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.fontColor-1 {
+  color: var(--clr-100);
+}
+.fontColor-2 {
+  color: var(--clr-200);
+}
+
+.fs-heading {
+  font-family: "Playwrite HR Lijeva", cursive;
+  font-weight: 300;
+  font-style: normal;
+}
+.fs-secondary {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.fs-paragraph {
+  font-family: "Edu AU VIC WA NT Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Input Component */
+.header {
+  width: calc(1000px - 50vw);
+  min-width: 40%;
+  max-width: 100%;
+  background: var(--clr-300);
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+.header-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  text-align: center;
+}
+.header-description {
+  text-align: center;
+  padding: 10px 5px;
+}
+.header-input {
+  width: clamp(192px, 50%, 278px);
+  color: var(--clr-400);
+  background: var(--clr-200);
+  border-radius: 5px;
+  border: 2px solid var(--clr-500);
+  padding: 0 10px;
+  font-size: clamp(0.9, 1.5vw, 1.1rem);
+  
+
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+  }
+}
+
+.submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 2rem;
+  width: 100%;
+  gap: 5px;
+  
+  & button {
+    background: var(--clr-500);
+    color: var(--clr-100);
+    border: none;
+    border-radius: 5px;
+    padding: 0 8px;
+    font-size: clamp(0.9, 1.5rem, 1.1rem);
+    font-size: 0.9rem;
+    transition: all 100ms ease-in-out;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+/* ingredients */
+.recipe-box ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  padding: 5px;
+  list-style: inside;
+  list-style-type: disc;
+}
+.recipe-box ul li {
+  text-align: start;
+  padding: 2px;
+  font-size: 0.6rem;
+  font-weight: 700;
+
+  &::marker {
+    color: var(--clr-500);
+  }
+}
+@media (min-width: 600px) {
+  
+  .recipe-box ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .recipe-box ul li {
+    font-size: 0.8rem;
+  }
+}
+/* Recipe Method */
+.recipe-box {
+  border-bottom: 2px solid var(--clr-500);
+  
+  & p {
+    text-align: justify;
+    padding: 5px;
+    line-height: 1.3rem;
+  }
+  & footer {
+    text-align: center;
+    padding-top: 5px;
+  }
+}
+
+/* Banner */
+.banner-wrap {
+  position: absolute;
+  width: clamp(300px, 50%, 400px);
+
+  & img {
+    height: 100%;
+    width: 100%;
+  }
+  & button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--clr-100);
+    font-size: 1.5rem;
+    padding: 10px 15px;
+  }
+}
+
+
+/* Loading  */
+.loading {
+  height: 100px;
+  width: 100px;
+  padding: 1rem;
+  /* background-color: red; */
+
+  & img {
+    height: clamp(50px, 50%, 100px);
+    width: clamp(50px, 50%, 100px);
+    animation: spin 5s linear infinite;
+  }
+
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dashboard */
+
+
+.Dashboard-wrapper {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  top: 10px;
+  left: 10px;  
+  border-radius: 5px;
+  border: 1px solid var(--clr-400);
+  gap: 5px;
+  padding: 5px;
+  background: var(--clr-300);
+  overflow: hidden;
+  transition: all 200ms linear;
+}
+.Dashboard-wrapperOpen{
+  height: 257px;
+  width: 147px;
+
+  & header {
+    display: flex !important;
+  }
+}
+
+/* Hamburger Dash */
+.dash {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background: var(--clr-400);
+  cursor: pointer;
+  transition: opacity 100ms ease-in-out;
+
+  &:hover {
+    opacity: 0.6;
+  }
+  &:active {
+    transform: scale(0.95);
+  } 
+  & img {
+    height: 100%;
+    width: 100%;
+
+  }
+}
+
+/* Dashboard Header */
+.Dashboard-wrapper header {
+  display: none;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 5px;
+  gap: 5px;
+  background: var(--clr-400);
+
+  /* header has two child elements (img and ul) */
+
+  & img {
+    height: 100px;
+    width: 125px;
+    border-radius: 5px;
+  }
+
+  & ul {
+    gap: 5px;
+    justify-content: center;
+    padding: 0 5px;
+    list-style: none;
+    /* background-color: green; */
+  }
+  & ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    /* background-color: green; */
+       
+      & img {
+        height: 20px;
+        width: 20px;
+        /* background-color: brown; */
+      }
+      & a {
+        text-decoration: none;
+        color: var(--clr-100);
+      }
+    }
+  & ul li:nth-child(1) a:hover {
+    color: #CD201F;
+  }    
+  & ul li:nth-child(2) a:hover {
+    color: #0077B5;
+  }
+  & ul li:nth-child(3) a:hover {
+    color: #d62976;
+  }
+  & ul li:nth-child(4) a:hover {
+    color: #2b3137;
+  }
+}
+
+@media (min-width: 600px) {
+  .Dashboard-wrapper header {
+    flex-direction: row;
+  }  
+  .Dashboard-wrapperOpen{
+    height: 157px;
+    width: 274.97px;
+  }
+}
