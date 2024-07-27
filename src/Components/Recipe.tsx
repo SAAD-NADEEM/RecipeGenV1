@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 function Recipe(props: any) {
   const { data, title } = props;
