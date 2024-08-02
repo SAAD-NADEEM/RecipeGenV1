@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function Dashboard() {
 
-  const [trigger, setTrigger] = useState(false)
+  const [trigger, setTrigger] = useState<boolean>(false)
 
   const handleClick = () => {
     setTrigger(!trigger)

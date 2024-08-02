@@ -7,27 +7,36 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import Dashboard from "./Components/Dashboard";
 
 function App() {
-  const [title, setTitle] = useState("");
-  const [data, setData] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [data, setData] = useState<string>("");
 
-  const [banner, setBanner] = useState(true);
-  const [apiToggle, setApiToggle] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e: any) => {
+  const [banner, setBanner] = useState<boolean>(true);
+  const [apiToggle, setApiToggle] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  
+  interface reciEvent{
+    target: {
+      recipe: {
+        value: string
+      },
+      reset: () => void
+    },
+    preventDefault: () => void,
+  }
+  const handleSubmit = async (e: reciEvent):Promise<void> => {
     e.preventDefault();
     if(e.target.recipe.value !== ""){
       try {
         setLoading(true);
     
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        const apiKey: string = import.meta.env.VITE_GEMINI_API_KEY;
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ 
           model: "gemini-1.5-flash",
           generationConfig: {responseMimeType: "application/json"}
         });
     
-        const prompt = `
+        const prompt: string = `
         Write a detailed recipe for ${e.target.recipe.value}:
         {
           type: "object,
@@ -48,7 +57,7 @@ function App() {
         `
         const result = await model.generateContent(prompt)
         const res = await result.response
-        const text = res.text()
+        const text: string = res.text()
         setData(text);
         setTitle(e.target.recipe.value);
         setLoading(false);
