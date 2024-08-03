@@ -7,9 +7,9 @@ Built using ReactJs and Powered by Gemini AI Model
 Link to This Web App!
 http://recipegen-ai.netlify.app/
 
-============================ Social Links ===============================
-= Instagram: https://www.instagram.com/react_and_roll_saad/             =
-= LinkedIn: www.linkedin.com/in/reactandroll-saad                       =
-= Youtube: https://www.youtube.com/@ReactAndRoll-Saad                   =
-= Facebook: https://www.facebook.com/people/React-Roll/61562956030417/  =
-=========================================================================
+---------------------------- Social Links -------------------------------
+- Instagram: https://www.instagram.com/react_and_roll_saad/             -
+- LinkedIn: www.linkedin.com/in/reactandroll-saad                       -
+- Youtube: https://www.youtube.com/@ReactAndRoll-Saad                   -
+- Facebook: https://www.facebook.com/people/React-Roll/61562956030417/  -
+-------------------------------------------------------------------------
