@@ -20,19 +20,19 @@ function Dashboard() {
         <ul className="flex-column fs-secondary">
           <li>
             <img src="./youtube.svg" alt="" />
-            <a href="#">Youtube</a>
+            <a href="https://youtube.com/shorts/vx8QyjBlFnQ">Youtube</a>
           </li>
           <li>
             <img src="./linkedin.svg" alt="" />
-            <a href="#">Linkedin</a>
+            <a href="https://www.linkedin.com/in/reactandroll-saad/">Linkedin</a>
           </li>
           <li>
             <img src="./instagram.svg" alt="" />
-            <a href="#">Instagram</a>
+            <a href="https://www.instagram.com/react_and_roll_saad/">Instagram</a>
           </li>
           <li>
             <img src="./github.svg" alt="" />
-            <a href="#">Github</a>
+            <a href="https://github.com/SAAD-NADEEM">Github</a>
           </li>
         </ul>
 
