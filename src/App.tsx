@@ -23,6 +23,44 @@ function App() {
     },
     preventDefault: () => void,
   }
+
+  const getRecipe = async (name:string) => {
+
+    const apiKey: string = import.meta.env.VITE_GEMINI_API_KEY;
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ 
+      model: "gemini-1.5-flash",
+      generationConfig: {responseMimeType: "application/json"}
+    });
+
+    const prompt: string = `
+    Write a detailed recipe for ${name}:
+    {
+      type: "object,
+      properties: {
+        ingredients: {
+          type: "array",
+          items: {
+            type: "string"
+          }
+        },
+        method: {
+          type: "string",
+          description: "Recipe instructions in detailed paragraphs. The format should be without any special characters."
+        }
+      },
+      required: ["ingredients", "method"]
+    }
+    `
+    const result = await model.generateContent(prompt)
+    const res = await result.response
+    const text: string = res.text()
+    setData(text);
+    setTitle(name);
+    setLoading(false);
+    setApiToggle(true);
+  }
+
   const handleSubmit = async (e: reciEvent):Promise<void> => {
     e.preventDefault();
     if(e.target.recipe.value !== ""){
@@ -30,38 +68,25 @@ function App() {
         setLoading(true);
     
         const apiKey: string = import.meta.env.VITE_GEMINI_API_KEY;
+        const query = e.target.recipe.value
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ 
           model: "gemini-1.5-flash",
-          generationConfig: {responseMimeType: "application/json"}
         });
     
-        const prompt: string = `
-        Write a detailed recipe for ${e.target.recipe.value}:
-        {
-          type: "object,
-          properties: {
-            ingredients: {
-              type: "array",
-              items: {
-                type: "string"
-              }
-            },
-            method: {
-              type: "string",
-              description: "Recipe instructions in detailed paragraphs. The format should be without any special characters."
-            }
-          },
-          required: ["ingredients", "method"]
-        }
-        `
+        const prompt = `check if ${e.target.recipe.value} is actually a recipe name or a dish, dessert or anything that can be cooked, if yes then just say Yes, if not just say "Please Enter a valid Recipe Name", your answer should either be Yes or a "Please Enter a valid Recipe Name"`
         const result = await model.generateContent(prompt)
         const res = await result.response
         const text: string = res.text()
-        setData(text);
-        setTitle(e.target.recipe.value);
-        setLoading(false);
-        setApiToggle(true);
+        const trimed = text.trim()
+
+        if(trimed === "Yes") {
+          getRecipe(query)
+        }
+        else {
+          alert(trimed)
+          setLoading(false)
+        }
     
         e.target.reset()
       } catch (error) {
